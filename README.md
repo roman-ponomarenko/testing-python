@@ -32,7 +32,7 @@ uv run pytest -v
 Run a specific test file:
 
 ```bash
-uv run pytest tests/first_test.py
+uv run pytest tests/first_tests.py
 ```
 
 Run tests with coverage:
