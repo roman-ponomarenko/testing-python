@@ -5,5 +5,6 @@ description = "Testing with python project"
 requires-python = ">=3.14"
 dependencies = [
     "dotenv>=0.9.9",
+    "faker>=40.11.1",
     "pytest-playwright>=0.7.2",
 ]
