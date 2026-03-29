@@ -21,9 +21,7 @@ def test_login_with_invalid_creds(page: Page, faker):
 
     login_user(page, Config.TESTOMAT_USERNAME, faker.password(length=10))
 
-    expect(
-        page.locator("#content-desktop p:has-text('Invalid Email or password.')")
-    ).to_be_visible()
+    expect(page.locator("#content-desktop p:has-text('Invalid Email or password.')")).to_be_visible()
 
 
 def test_login_with_valid_creds(page: Page):
@@ -35,9 +33,7 @@ def test_login_with_valid_creds(page: Page):
 
     login_user(page, Config.TESTOMAT_USERNAME, Config.TESTOMAT_PASSWORD)
 
-    expect(page.locator(".common-flash-success p")).to_have_text(
-        "Signed in successfully"
-    )
+    expect(page.locator(".common-flash-success p")).to_have_text("Signed in successfully")
 
 
 def test_search_project_in_company(page: Page, login):
@@ -55,16 +51,12 @@ def test_should_be_possible_to_open_free_project(page: Page, login):
     page.locator("#company_id").select_option(project_name)
 
     expect(page.get_by_text("You have not created any projects yet")).to_be_visible()
-    expect(
-        page.locator("a.common-btn-primary:has-text('Create project')")
-    ).to_be_visible()
+    expect(page.locator("a.common-btn-primary:has-text('Create project')")).to_be_visible()
 
     search_for_project(page, target_project)
 
     expect(page.get_by_text("You have not created any projects yet")).to_be_visible()
-    expect(
-        page.locator("a.common-btn-primary:has-text('Create project')")
-    ).to_be_visible()
+    expect(page.locator("a.common-btn-primary:has-text('Create project')")).to_be_visible()
 
 
 def click_sign_in_button(page: Page):

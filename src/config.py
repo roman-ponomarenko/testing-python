@@ -19,6 +19,6 @@ def get_env(key: str) -> str:
 @dataclass(frozen=True)
 class Config:
     TESTOMAT_URL = get_env("TESTOMAT_URL")
-    TESTOMAT_SIGN_IN_URL = f"{get_env("TESTOMAT_BASE_APP_URL")}/users/sign_in"
+    TESTOMAT_SIGN_IN_URL = f"{get_env('TESTOMAT_BASE_APP_URL')}/users/sign_in"
     TESTOMAT_USERNAME = get_env("TESTOMAT_USERNAME")
     TESTOMAT_PASSWORD = get_env("TESTOMAT_PASSWORD")

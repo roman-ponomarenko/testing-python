@@ -4,9 +4,29 @@ version = "0.1.0"
 description = "Testing with python project"
 requires-python = ">=3.14"
 dependencies = [
-    "black>=26.3.1",
     "dotenv>=0.9.9",
     "faker>=40.11.1",
-    "isort>=8.0.1",
     "pytest-playwright>=0.7.2",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.8",
+]
+
+[tool.ruff]
+# Set the maximum line length
+line-length = 120
+
+# Target specific Python version to avoid false positives for new syntax
+target-version = "py314"
+
+[tool.ruff.lint]
+# Select all default rules (E, F) plus Bugbear (B), isort (I), and pyupgrade (UP) rules
+select = ["E", "W", "F", "B", "I", "UP"]
+
+# Ignore specific rules
+ignore = ["E501"] # Example: ignore line length rule if handled by the formatter
+
+[tool.ruff.format]
+quote-style = "double"
