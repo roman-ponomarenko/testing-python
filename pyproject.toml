@@ -4,7 +4,9 @@ version = "0.1.0"
 description = "Testing with python project"
 requires-python = ">=3.14"
 dependencies = [
+    "black>=26.3.1",
     "dotenv>=0.9.9",
     "faker>=40.11.1",
+    "isort>=8.0.1",
     "pytest-playwright>=0.7.2",
 ]
