@@ -11,7 +11,9 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    # Ruff is used for linting and formatting the project code to ensure style consistency and find bugs.
     "ruff>=0.15.8",
+    # Ty is used for type checking and ensuring type safety within the project.
     "ty>=0.0.26",
 ]
 
