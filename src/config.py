@@ -1,5 +1,5 @@
-import os
 import functools
+import os
 from dataclasses import dataclass
 
 from dotenv import load_dotenv
@@ -18,6 +18,7 @@ def get_env(key: str) -> str:
 
 @dataclass(frozen=True)
 class Config:
-    TESTOMAT_URL = get_env("TESTOMAT_URL")
-    TESTOMAT_USERNAME = get_env("TESTOMAT_USERNAME")
-    TESTOMAT_PASSWORD = get_env("TESTOMAT_PASSWORD")
+    TESTOMAT_URL: str = get_env("TESTOMAT_URL")
+    TESTOMAT_SIGN_IN_URL: str = f"{get_env('TESTOMAT_BASE_APP_URL')}/users/sign_in"
+    TESTOMAT_USERNAME: str = get_env("TESTOMAT_USERNAME")
+    TESTOMAT_PASSWORD: str = get_env("TESTOMAT_PASSWORD")
