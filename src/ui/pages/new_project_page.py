@@ -1,6 +1,6 @@
 from typing import Self
 
-from playwright.sync_api import Page, Locator, expect
+from playwright.sync_api import Locator, Page, expect
 
 from src.ui.components.demo_project_option import DemoProjectOption
 from src.ui.components.project_type_option import ProjectTypeOption
@@ -9,7 +9,6 @@ from src.ui.models.project_type import ProjectType
 
 
 class NewProjectPage:
-
     def __init__(self, page: Page):
         self._page = page
 
@@ -24,7 +23,7 @@ class NewProjectPage:
 
     @property
     def page_title(self) -> Locator:
-        return self._page.locator(".common-page-header h2", has_text='New Project')
+        return self._page.locator(".common-page-header h2", has_text="New Project")
 
     @property
     def how_to_start_btn(self) -> Locator:
@@ -68,9 +67,7 @@ class NewProjectPage:
 
     @property
     def create_demo_button(self) -> Locator:
-        return self._page.locator(
-            "form[action='/projects/create_demo'] input[type='submit']"
-        )
+        return self._page.locator("form[action='/projects/create_demo'] input[type='submit']")
 
     @property
     def _demo_option_elements(self) -> Locator:
@@ -79,19 +76,14 @@ class NewProjectPage:
     @property
     def demo_project_options(self) -> list[DemoProjectOption]:
         count = self._demo_option_elements.count()
-        return [
-            DemoProjectOption(self._demo_option_elements.nth(i))
-            for i in range(count)
-        ]
+        return [DemoProjectOption(self._demo_option_elements.nth(i)) for i in range(count)]
 
     def get_demo_option_by_name(self, name: str) -> DemoProjectOption:
         option_root = self._demo_option_elements.filter(has_text=name).first
         return DemoProjectOption(option_root)
 
     def is_demo_form_visible(self) -> bool:
-        return "h-full" in (
-                self.demo_form_container.get_attribute("class") or ""
-        )
+        return "h-full" in (self.demo_form_container.get_attribute("class") or "")
 
     # -------------------------
     # Actions
@@ -111,7 +103,7 @@ class NewProjectPage:
 
     def submit_create_demo_project(self) -> None:
         self.create_demo_button.click()
-        
+
     # -------------------------
     # Verifications
     # -------------------------

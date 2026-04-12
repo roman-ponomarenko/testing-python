@@ -1,8 +1,9 @@
-from enum import Enum
 from collections import namedtuple
+from enum import Enum
 
 # Define a namedtuple for the structure
 ProjectInfo = namedtuple("ProjectInfo", ["locator", "label"])
+
 
 class ProjectType(Enum):
     # Assign namedtuple instances to members

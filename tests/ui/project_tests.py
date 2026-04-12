@@ -1,25 +1,22 @@
-import re
-import re
-from playwright.sync_api import expect
-from src.ui.application import Application
 from faker import Faker
 
 from src.config import Config
+from src.ui.application import Application
 from src.ui.models.badge import Badge
 from src.ui.models.checkbox_state import CheckboxState
 from src.ui.models.project_type import ProjectType
 
 
 def test_verify_project_details_and_navigation_to_empty_project_page(app: Application):
-    project_name = 'E-commerce'
+    project_name = "E-commerce"
 
     login_page = app.login_page.open().is_loaded()
     login_page.login(Config.TESTOMAT_USERNAME, Config.TESTOMAT_PASSWORD)
 
     projects_page = app.project_page.is_loaded()
 
-    projects_page.verify_selected_company('QA Club Lviv')
-    projects_page.verify_plan_badge_text('Enterprise plan')
+    projects_page.verify_selected_company("QA Club Lviv")
+    projects_page.verify_plan_badge_text("Enterprise plan")
 
     projects_page.search_project(project_name)
 
@@ -34,6 +31,7 @@ def test_verify_project_details_and_navigation_to_empty_project_page(app: Applic
 
     empty_project_page = app.empty_project_page.is_loaded()
     empty_project_page.verify_project_title(project_name)
+
 
 def test_project_type_selection_flow(app: Application):
     # Step 1: Login and navigate to Create Project page
@@ -72,6 +70,7 @@ def test_project_type_selection_flow(app: Application):
     new_project_page.verify_demo_data_state(CheckboxState.CHECKED)
     new_project_page.verify_demo_form_visible()
 
+
 def test_create_new_classical_project(app: Application, faker: Faker):
     project_name = faker.word().capitalize() + " project"
 
@@ -94,6 +93,7 @@ def test_create_new_classical_project(app: Application, faker: Faker):
     empty_project_page.readme_panel.is_loaded().close()
 
     empty_project_page.verify_project_title(project_name)
+
 
 def test_create_new_bdd_project(app: Application, faker: Faker):
     project_name = faker.word().capitalize() + " BDD project"

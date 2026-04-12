@@ -1,12 +1,11 @@
 from typing import Self
 
-from playwright.sync_api import expect, Page, Locator
+from playwright.sync_api import Locator, Page, expect
 
 from src.ui.components.readme_panel import ReadmePanel
 
 
 class EmptyProjectPage:
-
     def __init__(self, page: Page):
         self._page = page
 
@@ -25,9 +24,7 @@ class EmptyProjectPage:
 
     @property
     def more_options_button(self) -> Locator:
-        return self._page.locator(
-            ".ember-basic-dropdown-trigger.btn-only-icon"
-        )
+        return self._page.locator(".ember-basic-dropdown-trigger.btn-only-icon")
 
     @property
     def onboarding_heading(self) -> Locator:
@@ -39,9 +36,7 @@ class EmptyProjectPage:
 
     @property
     def readme_panel(self) -> ReadmePanel:
-        return ReadmePanel(
-            self._page.locator(".detail.detail-view-resizable")
-        )
+        return ReadmePanel(self._page.locator(".detail.detail-view-resizable"))
 
     def open_readme(self) -> ReadmePanel:
         self.readme_button.click()

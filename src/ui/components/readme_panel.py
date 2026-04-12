@@ -1,4 +1,5 @@
 from typing import Self
+
 from playwright.sync_api import Locator, expect
 
 
@@ -38,10 +39,7 @@ class ReadmePanel:
 
     @property
     def lets_start_button(self) -> Locator:
-        return self._root.locator(
-            ".detail-view-content a.primary-btn",
-            has_text="let's start"
-        )
+        return self._root.locator(".detail-view-content a.primary-btn", has_text="let's start")
 
     # -------------------------
     # Queries

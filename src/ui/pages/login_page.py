@@ -1,11 +1,11 @@
 from typing import Self
+
 from playwright.sync_api import Page, expect
 
 from src.config import Config
 
 
 class LoginPage:
-
     def __init__(self, page: Page):
         self.page = page
 

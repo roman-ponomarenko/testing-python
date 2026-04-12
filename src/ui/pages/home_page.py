@@ -1,10 +1,11 @@
 from typing import Self
-from playwright.sync_api import Page, expect, Locator
+
+from playwright.sync_api import Locator, Page, expect
+
 from src.config import Config
 
 
 class HomePage:
-
     def __init__(self, page: Page):
         self.page = page
         self.login_button: Locator = self.page.locator("[href*='sign_in'].login-item")

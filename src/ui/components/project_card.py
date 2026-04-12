@@ -1,5 +1,3 @@
-import re
-
 from playwright.sync_api import Locator, expect
 
 from src.ui.models.badge import Badge
