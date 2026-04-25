@@ -24,7 +24,7 @@ class ProjectCard:
 
     @property
     def extra_members_count(self) -> Locator:
-        return self._root.locator("div.rounded-full")
+        return self._root.locator("img ~ div")
 
     @property
     def badge(self) -> Locator:

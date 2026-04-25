@@ -18,5 +18,5 @@ class HomePage:
         expect(self.login_button).to_be_visible()
         return self
 
-    def click_login_button(self):
+    def click_login_button(self) -> None:
         self.login_button.click()

@@ -20,11 +20,11 @@ class EmptyProjectPage:
 
     @property
     def readme_button(self) -> Locator:
-        return self._page.locator(".sticky-header a.ember-view")
+        return self._page.locator(".sticky-header").get_by_role("link", name="Readme")
 
     @property
     def more_options_button(self) -> Locator:
-        return self._page.locator(".ember-basic-dropdown-trigger.btn-only-icon")
+        return self._page.locator(".sticky-header [role='button']")
 
     @property
     def onboarding_heading(self) -> Locator:
@@ -41,6 +41,9 @@ class EmptyProjectPage:
     def open_readme(self) -> ReadmePanel:
         self.readme_button.click()
         return self.readme_panel.is_loaded()
+
+    def close_readme(self) -> None:
+        self.readme_panel.is_loaded().close()
 
     def is_readme_panel_open(self) -> bool:
         return self.readme_panel.is_visible()

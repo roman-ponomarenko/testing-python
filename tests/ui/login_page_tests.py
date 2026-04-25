@@ -30,7 +30,7 @@ def test_navigation_to_login_page(app: Application):
 def test_login_page(shared_app: Application, email, password):
     login_page = shared_app.login_page.open().is_loaded()
     login_page.login(email, password)
-    login_page.invalid_login_message_should_be_visible()
+    login_page.verify_invalid_login_message()
 
 
 @pytest.mark.smoke

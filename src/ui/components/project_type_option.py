@@ -13,11 +13,11 @@ class ProjectTypeOption:
 
     @property
     def name(self) -> Locator:
-        return self._root.locator("div.ml-4 > span")
+        return self._root.locator("img + div > span")
 
     @property
     def description(self) -> Locator:
-        return self._root.locator("div.ml-4 > div")
+        return self._root.locator("[id$='-help-text']")
 
     def get_name_text(self) -> str:
         return self.name.inner_text()

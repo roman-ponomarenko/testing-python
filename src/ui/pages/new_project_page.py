@@ -83,7 +83,7 @@ class NewProjectPage:
         return DemoProjectOption(option_root)
 
     def is_demo_form_visible(self) -> bool:
-        return "h-full" in (self.demo_form_container.get_attribute("class") or "")
+        return self.demo_form_container.is_visible()
 
     # -------------------------
     # Actions

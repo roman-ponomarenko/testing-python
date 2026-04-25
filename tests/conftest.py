@@ -54,8 +54,8 @@ def shared_browser(browser_instance: Browser) -> Generator[Page]:
 
 @pytest.fixture(scope="function")
 def shared_app(shared_browser: Page) -> Generator[Application]:
-    # Wait for 3 seconds to avoid rate limiting by Testomat.io
-    shared_browser.wait_for_timeout(3000)
+    # Wait to avoid rate limiting by Testomat.io (configurable via PW_RATE_LIMIT_TIMEOUT)
+    shared_browser.wait_for_timeout(Config.PW_RATE_LIMIT_TIMEOUT)
     yield Application(shared_browser)
 
 

@@ -15,4 +15,5 @@ class Config:
     PW_TIMEOUT: int = config("PW_TIMEOUT", default=60_000, cast=int)
     PW_EXPECT_TIMEOUT: int = config("PW_EXPECT_TIMEOUT", default=20_000, cast=int)
     PW_HEADLESS: bool = config("PW_HEADLESS", default=False, cast=bool)
-    PW_BROWSER: str = config("PW_BROWSER")
+    PW_BROWSER: str = config("PW_BROWSER", default="chrome")
+    PW_RATE_LIMIT_TIMEOUT: int = config("PW_RATE_LIMIT_TIMEOUT", default=3000, cast=int)

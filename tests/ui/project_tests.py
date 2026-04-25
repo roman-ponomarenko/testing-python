@@ -83,7 +83,7 @@ def test_create_new_classical_project(logged_app: Application, faker: Faker):
 
     # Step 3: Verify navigation to the Empty Project Page
     empty_project_page = logged_app.empty_project_page.is_loaded()
-    empty_project_page.readme_panel.is_loaded().close()
+    empty_project_page.close_readme()
 
     empty_project_page.verify_project_title(project_name)
 
@@ -134,6 +134,6 @@ def test_create_new_bdd_project(logged_app: Application, faker: Faker):
 
     # Step 3: Verify navigation to the Empty Project Page
     empty_project_page = logged_app.empty_project_page.is_loaded()
-    empty_project_page.readme_panel.is_loaded().close()
+    empty_project_page.close_readme()
 
     empty_project_page.verify_project_title(project_name)
