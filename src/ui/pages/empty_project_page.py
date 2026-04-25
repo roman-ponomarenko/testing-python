@@ -28,7 +28,7 @@ class EmptyProjectPage:
 
     @property
     def onboarding_heading(self) -> Locator:
-        return self._page.locator(".my-2.p-8.text-center h2", has_text="🪄 Let's do some testing!")
+        return self._page.get_by_role("heading", name="🪄 Let's do some testing!", level=2)
 
     # -------------------------
     # README Panel
@@ -51,3 +51,6 @@ class EmptyProjectPage:
 
     def verify_project_title(self, expected_title: str) -> None:
         expect(self.project_title).to_have_text(expected_title)
+
+    def verify_project_title_is_visible(self) -> None:
+        expect(self.project_title).to_be_visible()

@@ -1,24 +1,18 @@
-import functools
-import os
 from dataclasses import dataclass
 
-from dotenv import load_dotenv
-
-load_dotenv()
-
-
-@functools.cache
-def get_env(key: str) -> str:
-    """Get the required environment variable or raise ValueError if missing."""
-    value = os.getenv(key)
-    if not value:  # Handles both None and empty string
-        raise ValueError(f"Required environment variable '{key}' is missing")
-    return value
+from decouple import config
 
 
 @dataclass(frozen=True)
 class Config:
-    TESTOMAT_URL: str = get_env("TESTOMAT_URL")
-    TESTOMAT_SIGN_IN_URL: str = f"{get_env('TESTOMAT_BASE_APP_URL')}/users/sign_in"
-    TESTOMAT_USERNAME: str = get_env("TESTOMAT_USERNAME")
-    TESTOMAT_PASSWORD: str = get_env("TESTOMAT_PASSWORD")
+    TESTOMAT_URL: str = config('TESTOMAT_URL')
+    TESTOMAT_BASE_APP_URL: str = config('TESTOMAT_BASE_APP_URL')
+    TESTOMAT_SIGN_IN_URL: str = f"{config('TESTOMAT_BASE_APP_URL')}/users/sign_in"
+    TESTOMAT_USERNAME: str = config("TESTOMAT_USERNAME")
+    TESTOMAT_PASSWORD: str = config("TESTOMAT_PASSWORD")
+
+    PW_SLOWMO: int = config("PW_SLOWMO", default=100, cast=int)
+    PW_TIMEOUT: int = config("PW_TIMEOUT", default=60_000, cast=int)
+    PW_EXPECT_TIMEOUT: int = config("PW_EXPECT_TIMEOUT", default=20_000, cast=int)
+    PW_HEADLESS: bool = config("PW_HEADLESS", default=False, cast=bool)
+    PW_BROWSER: str = config("PW_BROWSER")

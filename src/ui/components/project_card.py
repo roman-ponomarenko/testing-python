@@ -16,15 +16,15 @@ class ProjectCard:
 
     @property
     def test_count(self) -> Locator:
-        return self._root.locator("p.mt-1")
+        return self._root.locator("p")
 
     @property
     def member_avatars(self) -> Locator:
-        return self._root.locator("div.inline-flex img")
+        return self._root.locator("img")
 
     @property
     def extra_members_count(self) -> Locator:
-        return self._root.locator("div.text-gray-600")
+        return self._root.locator("div.rounded-full")
 
     @property
     def badge(self) -> Locator:

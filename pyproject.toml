@@ -7,6 +7,8 @@ dependencies = [
     "dotenv>=0.9.9",
     "faker>=40.11.1",
     "pytest-playwright>=0.7.2",
+    "pytest-html>=4.1.1",
+    "python-decouple>=3.8",
 ]
 
 [dependency-groups]
@@ -18,16 +20,76 @@ dev = [
 ]
 
 [tool.pytest.ini_options]
+# Requires pytest version 8.0 or higher; fails if an older version is used
+minversion = 8.0
+
+# Specifies the directory where pytest looks for tests (the tests/ folder)
 testpaths = ["tests"]
+
+# Defines filename patterns for test file discovery
+# Files starting with test_ or ending with _test.py or _tests-py
+python_files = ["*_tests.py", "test_*.py", "*_test.py"]
+
+# Defines function naming pattern - only functions starting with test_ are collected as tests
 python_functions = "test_*"
-python_files = "*_tests.py"
-log_cli = true
-log_level = "INFO"
+
+# Directories to skip during test collection to speed up discovery
+norecursedirs = ["__pycache__"]
+
 addopts = [
+    # Verbose output - shows individual test names
     "-v",
+    # Shows summary of all test outcomes except passed (r=report, a=all except passed)
+    "-ra",
+    # Raises error if using undefined markers (enforces marker registration)
+    "--strict-markers",
+    # Short traceback format for failures (less verbose than full)
+    "--tb=short",
+    # Playwright: runs browser in visible mode (not headless)
     "--headed",
-    #    "--slowmo=1000",
+    # Playwright: enables trace recording for debugging
+    "--tracing=retain-on-failure",
+    # Playwright: captures screenshots (typically on failure)
+    "--screenshot=on",
+    # Playwright: directory for trace files
+    "--output=test-result/traces/",
+    # Playwright: slow down browser operations by a specified number of milliseconds
+    "--slowmo=150",
+    # pytest-html plugin: generates HTML report at this path
+    "--html=test-result/report.html",
+    # Embeds CSS/JS in HTML report (single file, no external dependencies)
+    "--self-contained-html"
 ]
+
+# Registers custom markers to categorize tests
+markers = [
+    # Marker for quick smoke tests
+    "smoke: Quick smoke tests for basic functionality",
+    # Marker for full regression suite
+    "regression: Full regression test suite",
+    # Marker for web UI tests
+    "ui: Web UI tests using Playwright",
+    # Marker for long-running tests
+    "slow: Tests that take longer to execute",
+]
+
+# Shows progress bar/dots during test run instead of verbose list
+console_output_style = "progress"
+
+# Minimum log level to display (INFO and above)
+log_cli = true
+
+# Minimum log level to display (INFO and above)
+log_cli_level = "INFO"
+
+# Log message format with timestamp and level
+log_cli_format = "%(asctime)s [%(levelname)s] %(message)s"
+
+# Date/time format for log timestamps
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"
+
+# If a test marked @pytest.mark.fail unexpectedly passes, it fails the suite (prevents stale fails)
+xfail_strict = true
 
 
 [tool.ruff]

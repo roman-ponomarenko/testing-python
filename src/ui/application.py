@@ -5,6 +5,7 @@ from src.ui.pages.home_page import HomePage
 from src.ui.pages.login_page import LoginPage
 from src.ui.pages.new_project_page import NewProjectPage
 from src.ui.pages.project_page import ProjectPage
+from src.ui.pages.project_tests_page import ProjectTestsPage
 
 
 class Application:
@@ -15,6 +16,7 @@ class Application:
         self._project_page = ProjectPage(page)
         self._new_project_page = NewProjectPage(page)
         self._empty_project_page = EmptyProjectPage(page)
+        self._project_tests_page = ProjectTestsPage(page)
 
     @property
     def home_page(self) -> HomePage:
@@ -35,3 +37,7 @@ class Application:
     @property
     def empty_project_page(self) -> EmptyProjectPage:
         return self._empty_project_page
+
+    @property
+    def project_tests_page(self) -> ProjectTestsPage:
+        return self._project_tests_page
