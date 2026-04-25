@@ -3,3 +3,6 @@
 /.env
 
 .DS_Store
+/videos/
+/.playwright-cli/
+/test-result/
