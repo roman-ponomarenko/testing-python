@@ -103,8 +103,8 @@ class ProjectPage:
     def verify_plan_badge_text(self, expected_text: str):
         expect(self.plan_badge).to_have_text(expected_text)
 
-    def verify_count_of_project_visible(self, expected_count: int):
-        return expect(self._project_card_elements.filter(visible=True)).to_have_count(expected_count)
+    def verify_count_of_project_visible(self, expected_count: int) -> None:
+        expect(self._project_card_elements.filter(visible=True)).to_have_count(expected_count)
 
     def get_all_project_titles(self) -> list[str]:
         return [card.get_title_text() for card in self.project_cards]

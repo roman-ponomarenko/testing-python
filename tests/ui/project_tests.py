@@ -1,3 +1,4 @@
+import pytest
 from faker import Faker
 
 from src.ui.application import Application
@@ -6,6 +7,7 @@ from src.ui.models.checkbox_state import CheckboxState
 from src.ui.models.project_type import ProjectType
 
 
+@pytest.mark.regression
 def test_verify_project_details_and_navigation_to_empty_project_page(logged_app: Application):
     project_name = "E-commerce"
 
@@ -29,6 +31,7 @@ def test_verify_project_details_and_navigation_to_empty_project_page(logged_app:
     empty_project_page.verify_project_title(project_name)
 
 
+@pytest.mark.regression
 def test_project_type_selection_flow(logged_app: Application):
     # Step 1: Navigate to Create Project page
     logged_app.project_page.is_loaded()
@@ -64,26 +67,28 @@ def test_project_type_selection_flow(logged_app: Application):
     new_project_page.verify_demo_form_visible()
 
 
+@pytest.mark.smoke
 def test_create_new_classical_project(logged_app: Application, faker: Faker):
     project_name = faker.word().capitalize() + " project"
 
-    # Step 2: Navigate to Create Project page
+    # Step 1: Navigate to Create Project page
     projects_page = logged_app.project_page.is_loaded()
     projects_page.click_create_project()
 
-    # Step 3: Create a Classical Project
+    # Step 2: Create a Classical Project
     new_project_page = logged_app.new_project_page.is_loaded()
     new_project_page.select(ProjectType.CLASSICAL)
     new_project_page.fill_project_title(project_name)
     new_project_page.submit_create_project()
 
-    # Step 4: Verify navigation to the Empty Project Page
+    # Step 3: Verify navigation to the Empty Project Page
     empty_project_page = logged_app.empty_project_page.is_loaded()
     empty_project_page.readme_panel.is_loaded().close()
 
     empty_project_page.verify_project_title(project_name)
 
 
+@pytest.mark.smoke
 def test_create_demo_project_with_fill_demo_data(logged_app: Application):
     demo_project_name = "CodeceptJS Demo Project"
 
@@ -113,20 +118,21 @@ def test_create_demo_project_with_fill_demo_data(logged_app: Application):
     project_tests_page.verify_project_name(demo_project_name)
 
 
+@pytest.mark.smoke
 def test_create_new_bdd_project(logged_app: Application, faker: Faker):
     project_name = faker.word().capitalize() + " BDD project"
 
-    # Step 2: Navigate to Create Project page
+    # Step 1: Navigate to Create Project page
     projects_page = logged_app.project_page.is_loaded()
     projects_page.click_create_project()
 
-    # Step 3: Create a BDD Project
+    # Step 2: Create a BDD Project
     new_project_page = logged_app.new_project_page.is_loaded()
     new_project_page.select(ProjectType.BDD)
     new_project_page.fill_project_title(project_name)
     new_project_page.submit_create_project()
 
-    # Step 4: Verify navigation to the Empty Project Page
+    # Step 3: Verify navigation to the Empty Project Page
     empty_project_page = logged_app.empty_project_page.is_loaded()
     empty_project_page.readme_panel.is_loaded().close()
 

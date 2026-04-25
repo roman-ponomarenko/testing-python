@@ -46,8 +46,8 @@ class ProjectCard:
     def click(self) -> None:
         self.link.click()
 
-    def verify_badge(self, badge: Badge):
-        assert self.badge.inner_text() == badge.label
+    def verify_badge(self, badge: Badge) -> None:
+        expect(self.badge).to_have_text(badge.label)
 
     def verify_test_count(self, expected_count: int) -> None:
         expect(self.test_count).to_have_text(f"{expected_count} tests")

@@ -7,11 +7,11 @@ from src.config import Config
 
 class HomePage:
     def __init__(self, page: Page):
-        self.page = page
-        self.login_button: Locator = self.page.locator("[href*='sign_in'].login-item")
+        self._page = page
+        self.login_button: Locator = self._page.locator("[href*='sign_in'].login-item")
 
     def open(self) -> Self:
-        self.page.goto(Config.TESTOMAT_URL, wait_until="networkidle")
+        self._page.goto(Config.TESTOMAT_URL, wait_until="networkidle")
         return self
 
     def is_loaded(self) -> Self:
