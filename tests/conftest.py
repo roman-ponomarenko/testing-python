@@ -3,7 +3,7 @@ from collections.abc import Generator
 
 import pytest
 from faker import Faker
-from playwright.sync_api import Browser, Page, sync_playwright, expect
+from playwright.sync_api import Browser, Page, expect, sync_playwright
 
 from src.config import Config
 from src.ui.application import Application
