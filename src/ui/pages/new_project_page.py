@@ -83,14 +83,17 @@ class NewProjectPage:
         return DemoProjectOption(option_root)
 
     def is_demo_form_visible(self) -> bool:
-        return "h-full" in (self.demo_form_container.get_attribute("class") or "")
+        return self.demo_form_container.is_visible()
 
     # -------------------------
     # Actions
     # -------------------------
 
     def select(self, project_type: ProjectType) -> None:
-        ProjectTypeOption(root=self._page.locator(project_type.locator)).select()
+        if project_type == ProjectType.CLASSICAL:
+            self.classical_option.select()
+        else:
+            self.bdd_option.select()
 
     def fill_project_title(self, title: str) -> None:
         self.project_title_input.fill(title)

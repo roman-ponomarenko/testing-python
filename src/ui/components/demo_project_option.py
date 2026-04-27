@@ -15,10 +15,13 @@ class DemoProjectOption:
         return self._root.get_attribute("id") or ""
 
     def get_name_text(self) -> str:
-        return self._root.locator("div.ml-4").inner_text().strip()
+        return self._root.locator("img + div").inner_text().strip()
 
     def select(self) -> None:
         self._root.click()
 
     def verify_is_selected(self) -> None:
-        expect(self._root).to_have_class(re.compile(r"bg-gray-700"))
+        expect(self.icon).to_have_attribute("src", re.compile(r"circle-tick.svg"))
+
+    def verify_is_not_selected(self) -> None:
+        expect(self.icon).to_have_attribute("src", re.compile(r"circle.svg"))

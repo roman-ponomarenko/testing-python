@@ -13,11 +13,11 @@ class ProjectTypeOption:
 
     @property
     def name(self) -> Locator:
-        return self._root.locator("span.font-medium")
+        return self._root.locator("img + div > span")
 
     @property
     def description(self) -> Locator:
-        return self._root.locator("div.text-sm")
+        return self._root.locator("[id$='-help-text']")
 
     def get_name_text(self) -> str:
         return self.name.inner_text()
@@ -29,7 +29,8 @@ class ProjectTypeOption:
         self._root.click()
 
     def verify_is_selected(self) -> None:
-        expect(self._root).to_have_class(re.compile(r"bg-gray-700"))
+        expect(self.icon).to_have_attribute("src", re.compile(r"circle-tick.svg"))
+
 
     def verify_is_not_selected(self) -> None:
-        expect(self._root).not_to_have_class(re.compile(r"bg-gray-700"))
+        expect(self.icon).to_have_attribute("src", re.compile(r"circle.svg"))
